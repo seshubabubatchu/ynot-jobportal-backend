@@ -6,17 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
-public class JobsModel {
+public class UserModel {
     private UUID id;
-    private String jobTitle;
-    private String metaDescription;
-    private String jobDescription;
-    private String jobType;
-    private String jobLocation;
-    private UUID category;
-
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
 }

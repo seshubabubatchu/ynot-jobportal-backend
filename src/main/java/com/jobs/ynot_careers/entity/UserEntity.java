@@ -13,23 +13,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+@Entity
+@Table(name="users")
+@Data
 @Getter
 @Setter
-@Entity
-@Table(name = "jobs")
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobEntity {
+public class UserEntity {
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     @GeneratedValue(strategy = GenerationType.UUID)
 
     private UUID id;
-    private String jobTitle;
-    private String metaDescription;
-    private String jobDescription;
-    private String jobType;
-    private String jobLocation;
-    private UUID category;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String password;
+    
 }
