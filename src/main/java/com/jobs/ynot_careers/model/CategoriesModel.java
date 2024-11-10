@@ -1,5 +1,7 @@
 package com.jobs.ynot_careers.model;
 
+import java.util.UUID;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CategoriesModel {
-    private long id;
+    private UUID id;
     private String categoryName;
 }

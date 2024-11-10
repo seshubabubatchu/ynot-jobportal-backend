@@ -1,6 +1,7 @@
 package com.jobs.ynot_careers.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,24 +20,24 @@ import com.jobs.ynot_careers.repository.JobsRepo;
 
 
 @RestController
-@RequestMapping("/jobs")
+@RequestMapping("/api/jobs")
 public class JobsController {
 
     @Autowired
     private JobsRepo jobsRepo;
     
-    @GetMapping("/allJobs")
+    @GetMapping("/all-jobs")
     public List<JobEntity> getAllJobs(){
         return jobsRepo.findAll();
     }
 
     @GetMapping("{id}")
-    public JobEntity getJobById(@PathVariable String id){
-        Long jobId = Long.parseLong(id);
-        return jobsRepo.findById(jobId).orElse(null);
+    public JobEntity getJobById(@PathVariable UUID id){
+        // Long jobId = Long.parseLong(id);
+        return jobsRepo.findById(id).orElse(null);
     }
 
-    @PostMapping("addJob")
+    @PostMapping("add")
     public List<JobEntity> addJob(@RequestBody JobsModel job){
         JobEntity jobEntity = JobMapper.mapToEntity(job);
         jobsRepo.save(jobEntity);
@@ -44,19 +45,19 @@ public class JobsController {
     }
 
     @DeleteMapping("delete/{id}")
-    public List<JobEntity> deleteJob(@PathVariable String id){
-        Long jobId = Long.parseLong(id);
-        jobsRepo.deleteById(jobId);
+    public List<JobEntity> deleteJob(@PathVariable UUID id){
+        // Long jobId = Long.parseLong(id);
+        jobsRepo.deleteById(id);
         return jobsRepo.findAll();
 
     }
 
     @PutMapping("update/{id}")
-    public JobEntity updateJob(@PathVariable String id, @RequestBody JobsModel jobsModel){
-        Long jobId = Long.parseLong(id);
+    public JobEntity updateJob(@PathVariable UUID id, @RequestBody JobsModel jobsModel){
+        // Long jobId = Long.parseLong(id);
       JobEntity jobEntity = JobMapper.mapToEntity(jobsModel);
-      jobEntity.setId(jobId);
+      jobEntity.setId(id);
       jobsRepo.save(jobEntity);
-      return jobsRepo.findById(jobId).orElse(null);
+      return jobsRepo.findById(id).orElse(null);
     }
 }

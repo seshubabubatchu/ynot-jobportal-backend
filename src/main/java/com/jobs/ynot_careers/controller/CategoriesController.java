@@ -1,6 +1,7 @@
 package com.jobs.ynot_careers.controller;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -30,10 +31,10 @@ public class CategoriesController {
     }
 
     @GetMapping("/{id}")
-    public CategoriesEntity getCategoryById(@PathVariable String id){
-        System.out.println("inside getCategoryById"+id);
-        Integer categoryId = Integer.parseInt(id);
-        return categoriesRepo.findById(categoryId).orElse(null);
+    public CategoriesEntity getCategoryById(@PathVariable UUID id){
+        // System.out.println("inside getCategoryById"+id);
+        // Integer categoryId = Integer.parseInt(id);
+        return categoriesRepo.findById(id).orElse(null);
     }
     @PostMapping("/add")
     public List<CategoriesEntity> addCategory(@RequestBody CategoriesModel category){
@@ -44,19 +45,19 @@ public class CategoriesController {
     }
 
     @PutMapping("/{id}")
-    public CategoriesEntity updateCategory(@PathVariable String id, @RequestBody CategoriesModel category){
+    public CategoriesEntity updateCategory(@PathVariable UUID id, @RequestBody CategoriesModel category){
         System.out.println("inside updateCategory"+id);
-        Integer categoryId = Integer.parseInt(id);
+        // Integer categoryId = Integer.parseInt(id);
         CategoriesEntity categoriesEntity = CategoryMapper.mapToEntity(category);
-        categoriesEntity.setId(categoryId);
+        categoriesEntity.setId(id);
         categoriesRepo.save(categoriesEntity);
-        return categoriesRepo.findById(categoryId).orElse(null);
+        return categoriesRepo.findById(id).orElse(null);
     }
     @DeleteMapping("/delete/{id}")
-    public List<CategoriesEntity> deleteCategory(@PathVariable String id){
-        System.out.println("inside deleteCategory"+id);
-        Integer categoryId = Integer.parseInt(id);
-        categoriesRepo.deleteById(categoryId);
+    public List<CategoriesEntity> deleteCategory(@PathVariable UUID id){
+        // System.out.println("inside deleteCategory"+id);
+        // Integer categoryId = Integer.parseInt(id);
+        categoriesRepo.deleteById(id);
         return categoriesRepo.findAll();
     }
     
