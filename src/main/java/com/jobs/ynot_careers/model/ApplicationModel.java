@@ -1,6 +1,5 @@
 package com.jobs.ynot_careers.model;
 
-import java.util.List;
 import java.util.UUID;
 
 import lombok.AllArgsConstructor;
@@ -10,12 +9,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserModel {
+public class ApplicationModel {
     private UUID id;
+    private UUID userId;
+    private UUID jobId;
+    private String applicationStatus;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
-    private List<String> savedJobs;
-    private List<String> appliedJobs;
+    private String address;
+    private String phoneNumber;
+    private String resume;
 }

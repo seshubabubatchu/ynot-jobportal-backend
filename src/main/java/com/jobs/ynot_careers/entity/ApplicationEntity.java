@@ -1,6 +1,5 @@
 package com.jobs.ynot_careers.entity;
 
-import java.util.List;
 import java.util.UUID;
 
 import jakarta.persistence.Entity;
@@ -15,22 +14,24 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users")
+@Table(name = "applications")
 @Data
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+
+public class ApplicationEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-
     private UUID id;
+    private UUID userId;
+    private UUID jobId;
+    private String applicationStatus;
     private String firstName;
     private String lastName;
     private String email;
-    private String password;
-    private List<String> savedJobs;
-    private List<String> appliedJobs;
-
+    private String address;
+    private String phoneNumber;
+    private String resume;
 }
